@@ -1,71 +1,164 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>安逸花电话客服</title>
-  <!-- Font Awesome 图标库，用于微信图标 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>抖音在线客服</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jssip/3.10.0/jssip.min.js"></script>
   <style>
+    :root {
+      --dy-pink: #fe2c55;
+      --dy-blue: #25f4ee;
+      --dy-bg-dark: #0d0d0d;
+      --dy-text-light: #ffffff;
+      --dy-border-radius: 16px;
+    }
     body {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: var(--dy-bg-dark);
+      color: var(--dy-text-light);
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
-      background-color: #f1f1f1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      position: relative;
     }
-
-    .center-text {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      text-align: center;
-    }
-
-    .bottom-text {
-      position: fixed;
-      bottom: 40px;
-      right: 100px;
-      font-size: 16px;
-      color: #000; /* 黑色字体 */
-      font-weight: bold;
-    }
-
-    /* 中央图标的样式 */
-    .center-icon {
-      width: 250px; /* 设置更大的横向宽度 */
-      height: auto; /* 自动调整高度以保持图标比例 */
-      margin-bottom: 20px; /* 图标和文本之间的距离 */
-    }
-
-    /* 新增的文字样式 */
-    .extra-text {
-      font-size: 20px;
-      color: #2d2d2d;
-      font-weight: bold;
+    .logo-box {
+      margin-top: 36px;
       margin-bottom: 20px;
+    }
+    .logo-box img {
+      height: 60px;
+    }
+    .main-content {
+      background-color: #1a1a1a;
+      border-radius: var(--dy-border-radius);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+      padding: 32px 24px;
+      text-align: center;
+      max-width: 92vw;
+    }
+    .profile-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--dy-blue);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 26px;
+      margin: 8px 0 24px 0;
+      font-weight: bold;
+    }
+    button {
+      font-size: 18px;
+      padding: 14px 36px;
+      margin: 10px;
+      border: none;
+      border-radius: 28px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    #callButton {
+      background: linear-gradient(90deg, var(--dy-pink), var(--dy-blue));
+      color: white;
+    }
+    #qqButton {
+      background: linear-gradient(90deg, #4a90e2, #2d73c5);
+      color: white;
+    }
+    #callStatus {
+      margin-top: 18px;
+      font-size: 16px;
+      color: #aaa;
+    }
+    .footer {
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      margin: 30px 16px 40px;
+      line-height: 1.8;
+    }
+    .footer strong {
+      color: var(--dy-blue);
+    }
+    @media (max-width: 500px) {
+      button {
+        width: 88vw;
+        margin: 8px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 新增的文字：安逸花项目协商还款，提前还款结清！ -->
-  <div class="extra-text">安逸花项目协商还款，提前还款结清！</div>
 
-  <!-- 注释掉的安逸花图标 -->
-  <!-- <img src="https://github.com/Aa99889988/1122/blob/main/photo_2025-06-01_15-21-10.jpg?raw=true" alt="安逸花" class="center-icon" /> -->
+  <div class="logo-box">
+    <img src="https://img.alicdn.com/imgextra/i4/O1CN01dnivBF1N5RSFx2Jfa_!!6000000001533-2-tps-200-200.png" alt="抖音LOGO" />
+  </div>
 
-  <!-- 页面中间文字 -->
-  <div class="center-text">安逸花人工热线客服电话</div>
+  <div class="main-content">
+    <h1>抖音在线客服</h1>
+    <img class="profile-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="客服头像" />
+    
+    <!-- 呼叫按钮 -->
+    <button id="callButton">📞 呼叫客服</button>
+    <div id="callStatus">点击按钮将通过浏览器呼叫客服</div>
+  </div>
 
-  <!-- 底部提示文字 -->
-  <div class="bottom-text">在线咨询人工电话</div>
+  <div class="footer">
+    <strong>温馨提示：</strong><br>
+    您正在使用抖音官方在线客服页面。点击“呼叫客服”按钮将直接发起浏览器通话。<br>
+    请确保已开启麦克风权限，推荐使用最新版 Chrome / Edge 浏览器。<br>
+    <span style="color:#666;font-size:13px;display:block;margin-top:8px;">© 2025 抖音 版权所有</span>
+  </div>
 
-  <!-- 电话按钮小部件 -->
-  <script src="https://cloud.issabel.org/click2call/click.js?code=eyJjdCI6IjZVWVVYZnd3V0ROMUtVaXZlMzd5VE91S21reDVRdXhyUDRHeTdudTZtUFwvVnBxRXhSWEVFazYxcFVcL2Ura1doeGxKdVVLTnVuTmJPeTlsM0FcL3I5MUpTckJtdFFQZlU4MSs0MGRLQ2dVRksxOFk2Z2dhMFN2MzhJNUFXU1htZk15VEtFK3dVVWhkcUg4bnAyakZ4ZWZJeVBUYWdsdGVKUVJETXpFeTVkcTRsS1JZQnlCWk5DZGh3VmxaUE9uSWZRa3Y3RjgzSkRIQmJZXC9JV2JlSGVvQXo1eHNjMHp5a0xDZnpydVZwZTBzWkJjdms5bk1rbncrOEdqSk5CcUd0TjhISUlDcTRHZTNIRGx1eE42WlBwR0pyVW10QUlzUDJ3blJqV21kTWpVTURFND0iLCJpdiI6IjUxMmQ3ZWY5NmU2Zjg3ZDA3ODJjZTg5NTM3MTJiMzViIiwicyI6ImZhY2FmZDNhNTQ0Y2VjN2YifQ=="></script>
+  <script>
+    const socket = new JsSIP.WebSocketInterface('wss://xin.anjre.cn:8089/ws');
+    const configuration = {
+      sockets: [socket],
+      uri: 'sip:80000@xin.anjre.cn',
+      password: 'Aa6363463@',
+      session_timers: false,
+      user_agent: "DyWebClient"
+    };
+
+    const ua = new JsSIP.UA(configuration);
+    ua.start();
+
+    let activeSession = null;
+
+    function makeCall() {
+      if (activeSession) {
+        activeSession.terminate();
+        activeSession = null;
+        updateStatus("已挂断");
+        return;
+      }
+
+      const eventHandlers = {
+        progress: () => updateStatus("正在呼叫..."),
+        failed: (e) => updateStatus("呼叫失败: " + e.cause),
+        ended: () => updateStatus("通话结束"),
+        confirmed: () => updateStatus("通话中"),
+      };
+
+      const options = {
+        eventHandlers,
+        mediaConstraints: { audio: true, video: false }
+      };
+
+      const target = 'sip:10011@xin.anjre.cn';
+      activeSession = ua.call(target, options);
+    }
+
+    function updateStatus(msg) {
+      document.getElementById('callStatus').innerText = msg;
+    }
+
+    document.getElementById('callButton').addEventListener('click', makeCall);
+  </script>
+
 </body>
 </html>
